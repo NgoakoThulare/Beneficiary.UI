@@ -1,0 +1,44 @@
+<img src="assets/img/CapitecLogo.jpg" style="width: 200px; height: 130px;">
+<div class="card" style="width: 50%;">
+    <div class="card-header" style="background-color:#40b6e8;">
+        <h5 style="color: #fff;" id="test">Beneficiary Management</h5>
+    </div>
+    <div class="card-body">
+        <p style="color: #4e6066;">Add beneficiaries</p>
+    </div>
+
+    <form #beneficiaryForm="ngForm" class="form-inline" (ngSubmit)="createBeneficiary(beneficiaryForm.value)">
+        <input type="text" id="name-input" style="width: 50%;" class="form-control mb-2 mr-sm-2" name="name" [(ngModel)]='beneficiary.name' placeholder="Beneficiary name">
+        <input type="text" id="accountNumber-input" style="width: 50%;"class="form-control mb-2 mr-sm-2" name="accountNumber" [(ngModel)]='beneficiary.accountNumber' placeholder="Account Number">
+        <input type="text" id="reference-input" style="width: 50%;"class="form-control mb-2 mr-sm-2" name="reference" [(ngModel)]='beneficiary.reference' placeholder="Reference">
+        <br>
+        <button type="submit" id="create-btn" class="btn btn-success" name="create">Create</button>
+    </form>
+
+    <hr>
+
+    <table id="beneficiary" class="table table-hover">
+        <tr>
+          <th id="table" *ngFor="let col of columns" style="color: #4e6066; font-weight: normal; font-size: small;">
+            {{col}}
+          </th>
+        </tr>
+        <tr *ngFor="let beneficiary of beneficiaries">
+          <td>
+            {{beneficiary.name}}
+          </td>
+          <td>
+            {{beneficiary.accountNumber}}
+          </td>
+          <td>
+            {{beneficiary.reference}}
+          </td>
+          <td>
+            <button type="button" class="btn btn-info" (click)="viewBeneficiary(beneficiary.id)">Edit</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteBeneficiary(beneficiary.id)" style="background-color: red;">Delete</button>
+          </td>
+        </tr>
+      </table>
+</div>
